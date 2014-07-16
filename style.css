@@ -1,0 +1,108 @@
+.btn{
+	border-radius: 2px;
+    text-transform: uppercase;
+    font-weight:400;
+    position: relative;
+    overflow:hidden;
+    padding: 12px 28px;
+    border:0;
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus{
+	outline:none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+/*nav styles*/
+ul {
+	background: white; border-top: 6px solid hsl(180, 40%, 60%);
+	width: 200px;
+	padding:0;
+}
+ul li {
+	list-style-type: none;
+	/*relative positioning for list items along with overflow hidden to contain the overflowing ripple*/
+	position: relative;
+	overflow: hidden;
+}
+ul li a {
+	font: normal 14px/28px Montserrat; color: hsl(180, 40%, 40%);
+	display: block; padding: 10px 15px;
+	text-decoration: none;
+	cursor: pointer; /*since the links are dummy without href values*/
+	/*prevent text selection*/
+	user-select: none;
+	/*static positioned elements appear behind absolutely positioned siblings(.ink in this case) hence we will make the links relatively positioned to bring them above .ink*/
+	position: relative;
+}
+
+
+/* Animations
+------------------------- */
+	/*.ink styles - the elements which will create the ripple effect. 
+	 * The size and position of these elements will be set by the JS code. 
+	 * Initially these elements will be scaled down to 0% and later animated to 
+	 * large fading circles on user click.*/
+	.ink {
+		display: block; 
+		position: absolute;
+		background: #333;
+		opacity:0.2;
+		border-radius: 100%;
+		top:0;
+		left:0;
+		transform: scale(0);
+		-webkit-transform: scale(0);
+	}
+	/*animation effect*/
+	.ink.animate {
+		animation: ripple 0.65s cubic-bezier(.4,0,.2,1);
+		-webkit-animation: ripple 0.65s cubic-bezier(.4,0,.2,1);
+	}
+	.ink.focus{
+		background: white;
+		opacity:0.4;
+		animation: ripplefocus 2s infinite;
+		-webkit-animation: ripplefocus 2s infinite;
+	}
+	@keyframes ripple {
+		/*scale the element to 250% to safely cover the entire link and fade it out*/
+		100% { 
+			opacity: 0; 
+			-webkit-transform: scale(0.85);
+			-ms-transform: scale(0.85);
+			transform: scale(0.85); 
+		}
+	}
+	@-webkit-keyframes ripple {
+		/*scale the element to 250% to safely cover the entire link and fade it out*/
+		100% { 
+			opacity: 0; 
+			transform: scale(0.85);
+			-webkit-transform: scale(0.85); 
+		}
+	}
+	
+	@keyframes ripplefocus {
+		/*scale the element infinitly on focus*/
+		0%, 100% {
+			transform: scale(0.8);
+			-webkit-transform: scale(0.8); 
+		}
+		50% {
+			transform: scale(0.85);
+			-webkit-transform: scale(0.85); 
+		}
+	}
+	@-webkit-keyframes ripplefocus{
+		0%, 100% {
+			transform: scale(0.8);
+			-webkit-transform: scale(0.8); 
+		}
+		50% {
+			transform: scale(0.85);
+			-webkit-transform: scale(0.85); 
+		}
+	}
