@@ -6,6 +6,9 @@
     overflow:hidden;
     padding: 12px 28px;
     border:0;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
 }
 
 .btn:focus,.btn:active:focus,.btn.active:focus{
@@ -33,7 +36,9 @@ ul li a {
 	text-decoration: none;
 	cursor: pointer; /*since the links are dummy without href values*/
 	/*prevent text selection*/
-	user-select: none;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
 	/*static positioned elements appear behind absolutely positioned siblings(.ink in this case) hence we will make the links relatively positioned to bring them above .ink*/
 	position: relative;
 }
